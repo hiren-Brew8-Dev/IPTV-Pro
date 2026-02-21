@@ -5,8 +5,8 @@
 //  Created by Hiren Lakhatariya on 04/02/26.
 //
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 @main
 struct IPTVApp: App {
@@ -14,8 +14,11 @@ struct IPTVApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            
+            RootView()
+                .environment(
+                    \.managedObjectContext, persistenceController.container.viewContext)
         }
+        
     }
 }

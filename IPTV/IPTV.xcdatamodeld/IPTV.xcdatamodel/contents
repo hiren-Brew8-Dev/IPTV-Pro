@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    <entity name="Playlist" representedClassName="Playlist" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="channels" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Channel" inverseName="playlist" inverseEntity="Channel"/>
+    </entity>
+    <entity name="Channel" representedClassName="Channel" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="streamURL" optional="YES" attributeType="String"/>
+        <attribute name="logoURL" optional="YES" attributeType="String"/>
+        <attribute name="groupName" optional="YES" attributeType="String"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="playlistID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" inverseName="channels" inverseEntity="Playlist"/>
+    </entity>
+    <entity name="DownloadedVideo" representedClassName="DownloadedVideo" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="channelID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="localPath" optional="YES" attributeType="String"/>
+        <attribute name="progress" optional="YES" attributeType="Float" usesScalarValueType="YES"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Playlist" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Channel" positionX="100" positionY="-18" width="128" height="150"/>
+        <element name="DownloadedVideo" positionX="-63" positionY="150" width="128" height="120"/>
     </elements>
 </model>
