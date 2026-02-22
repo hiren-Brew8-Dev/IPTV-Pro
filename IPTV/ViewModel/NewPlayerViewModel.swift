@@ -16,6 +16,12 @@ class NewPlayerViewModel: NSObject, ObservableObject {
     @MainActor @Published var isLoading: Bool = false
     @MainActor @Published var isControlsVisible: Bool = true
     @MainActor @Published var isLocked: Bool = false
+    @MainActor @Published var isPiPActive: Bool = false
+    
+    // Playback State
+    @MainActor @Published var currentTime: Double = 0
+    @MainActor @Published var duration: Double = 0
+    @MainActor @Published var isSeeking: Bool = false
 
     // Playlist / Queue
     @MainActor @Published var playlist: [Channel] = []
@@ -62,8 +68,13 @@ class NewPlayerViewModel: NSObject, ObservableObject {
         }
     }
 
+    var videoTitle: String {
+        return currentChannel?.name ?? "Live Channel"
+    }
+
     private var cancellables = Set<AnyCancellable>()
     private var brightnessHideWorkItem: DispatchWorkItem?
+    private var timeObserver: Any?
 
     override init() {
         super.init()
@@ -142,6 +153,26 @@ class NewPlayerViewModel: NSObject, ObservableObject {
             }
             .store(in: &cancellables)
 
+        // Observe Duration
+        item.publisher(for: \.duration)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newDuration in
+                guard let self = self else { return }
+                if newDuration.isNumeric {
+                    self.duration = newDuration.seconds
+                } else {
+                    self.duration = .infinity // For live streams
+                }
+            }
+            .store(in: &cancellables)
+
+        // Time Observer
+        let interval = CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
+            guard let self = self, !self.isSeeking else { return }
+            self.currentTime = time.seconds
+        }
+
         // DidFinishPlaying
         NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime, object: item)
             .receive(on: DispatchQueue.main)
@@ -149,6 +180,21 @@ class NewPlayerViewModel: NSObject, ObservableObject {
                 // Loop or Next?
             }
             .store(in: &cancellables)
+    }
+
+    @MainActor
+    func seek(to time: Double) {
+        guard let player = player else { return }
+        isSeeking = true
+        let safeTime = max(0, min(time, duration.isInfinite ? currentTime + .infinity : duration))
+        currentTime = safeTime
+        
+        let targetTime = CMTime(seconds: safeTime, preferredTimescale: 600)
+        player.seek(to: targetTime, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.isSeeking = false
+            }
+        }
     }
 
     @MainActor
@@ -198,8 +244,16 @@ class NewPlayerViewModel: NSObject, ObservableObject {
     }
 
     @MainActor
+    func hideBrightnessUI() {
+        brightnessHideWorkItem?.cancel()
+        if showBrightnessUI {
+            showBrightnessUI = false
+        }
+    }
+
+    @MainActor
     func togglePiP() {
-        // PiP logic
+        isPiPActive.toggle()
     }
 
     @MainActor
@@ -226,6 +280,10 @@ class NewPlayerViewModel: NSObject, ObservableObject {
     }
 
     func cleanup() {
+        if let timeObserver = timeObserver {
+            player?.removeTimeObserver(timeObserver)
+            self.timeObserver = nil
+        }
         player?.pause()
         cancellables.removeAll()
         player = nil

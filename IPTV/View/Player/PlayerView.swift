@@ -32,7 +32,8 @@ struct PlayerView: View {
                 // Video Player with Aspect Ratio and Rotation
                 GeometryReader { geo in
                     CustomVideoPlayer(
-                        player: player, videoGravity: playerViewModel.aspectRatio.avGravity
+                        player: player, videoGravity: playerViewModel.aspectRatio.avGravity,
+                        isPiPActive: $playerViewModel.isPiPActive
                     )
                     .rotationEffect(Angle(degrees: playerViewModel.rotationAmount))
                     // Adjust frame for rotation if needed, simply filling geo for now

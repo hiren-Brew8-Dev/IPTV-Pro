@@ -6,27 +6,73 @@ import SwiftUI
     import AppKit
 #endif
 
+// MARK: - GlassButton Modifier
+struct GlassButtonStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(Color.white.opacity(0.15))
+            .clipShape(Capsule())
+    }
+}
+
+extension View {
+    func glassButton() -> some View {
+        self.modifier(GlassButtonStyle())
+    }
+}
+
 struct NewPlayerControlsView: View {
     @ObservedObject var viewModel: NewPlayerViewModel
     let onBack: () -> Void
-
+    
+    @StateObject private var volumeManager = SystemVolumeManager()
+    
     @State private var hideTimer: Timer?
     @State private var showQueue = false
     @State private var dragStartLocation: CGPoint = .zero
     @State private var dragStartValue: Float = 0.0
+    @State private var dragType: DragType = .none
+    
+    enum DragType {
+        case none, brightness, volume, dismiss
+    }
+
+    // Live Dot Animation
+    @State private var isLiveDotVisible = true
+
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var isIpad: Bool {
+        #if os(iOS)
+        return UIDevice.current.userInterfaceIdiom == .pad
+        #else
+        return false
+        #endif
+    }
+    
+    var isLandscape: Bool {
+        verticalSizeClass == .compact || isIpad
+    }
 
     var body: some View {
         ZStack {
             // Gestures
-            gestureOverlay.zIndex(1)
+            gestureOverlay
+                .zIndex(1)
 
             // Controls
             if viewModel.isControlsVisible && !viewModel.isLocked {
-                controlsOverlay.zIndex(3).transition(.opacity)
+                controlsOverlay
+                    .zIndex(3)
+                    .transition(.opacity)
             }
 
             // Lock Overlay
-            lockOverlay.zIndex(4)
+            lockOverlay
+                .zIndex(4)
 
             // Queue Overlay
             if showQueue {
@@ -56,12 +102,31 @@ struct NewPlayerControlsView: View {
                     .transition(.opacity)
             }
 
-            sliderOverlay.zIndex(5)
+            sliderOverlay
+                .zIndex(5)
         }
-        .onAppear { resetTimer() }
+        .onAppear {
+            resetTimer()
+            // Start blinking animation
+            withAnimation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
+                isLiveDotVisible = false
+            }
+        }
+        .onChange(of: volumeManager.showVolumeUI) { show in
+            if show {
+                viewModel.hideBrightnessUI()
+                viewModel.isControlsVisible = false
+            }
+        }
+        .onChange(of: viewModel.showBrightnessUI) { show in
+            if show {
+                volumeManager.hideVolumeUI()
+                viewModel.isControlsVisible = false
+            }
+        }
     }
 
-    // MARK: - Subviews
+    // MARK: - Gestures & Overlay
     private var gestureOverlay: some View {
         Color.clear
             .contentShape(Rectangle())
@@ -72,36 +137,52 @@ struct NewPlayerControlsView: View {
             .gesture(
                 DragGesture(minimumDistance: 10)
                     .onChanged { value in
+                        if viewModel.isLocked || viewModel.isPiPActive { return }
+                        
                         let screenWidth = getScreenWidth()
-                        if dragStartLocation == .zero {
-                            dragStartLocation = value.startLocation
-                            dragStartValue =
-                                value.startLocation.x > screenWidth / 2
-                                ? 0.5  // Volume Placeholder
-                                : viewModel.currentBrightness
+                        let screenHeight = getScreenHeight()
+                        
+                        if dragType == .none {
+                            let startX = value.startLocation.x
+                            let startY = value.startLocation.y
+                            
+                            // Interaction Zones: Left 25%, Center 50%, Right 25%
+                            let edgeThreshold = screenWidth * 0.25
+                            
+                            if startX < edgeThreshold {
+                                dragType = .brightness
+                                dragStartValue = viewModel.currentBrightness
+                                viewModel.triggerBrightnessUI()
+                            } else if startX > (screenWidth - edgeThreshold) {
+                                dragType = .volume
+                                dragStartValue = volumeManager.currentVolume
+                                volumeManager.triggerVolumeUI()
+                            } else {
+                                dragType = .dismiss
+                            }
                         }
-
-                        let isRightSide = dragStartLocation.x > screenWidth / 2
-                        let deltaY = Float((dragStartLocation.y - value.location.y) / 300)
-
-                        if !isRightSide {
-                            viewModel.setBrightness(dragStartValue + deltaY)
+                        
+                        if dragType == .brightness {
+                            let deltaY = Float((value.startLocation.y - value.location.y) / (screenHeight * 0.5))
+                            viewModel.setBrightness(min(max(dragStartValue + deltaY, 0.0), 1.0))
+                        } else if dragType == .volume {
+                            let deltaY = Float((value.startLocation.y - value.location.y) / (screenHeight * 0.5))
+                            volumeManager.setVolume(min(max(dragStartValue + deltaY, 0.0), 1.0))
                         }
                     }
-                    .onEnded { _ in dragStartLocation = .zero }
+                    .onEnded { value in
+                        if dragType == .dismiss {
+                            let translationY = value.translation.height
+                            if translationY > 100 { // Center swipe down to dismiss
+                                onBack()
+                            }
+                        }
+                        dragType = .none
+                    }
             )
     }
 
-    private func getScreenWidth() -> CGFloat {
-        #if os(iOS)
-            return UIScreen.main.bounds.width
-        #elseif os(macOS)
-            return NSScreen.main?.frame.width ?? 1000
-        #else
-            return 800
-        #endif
-    }
-
+    // MARK: - UI Views
     private var controlsOverlay: some View {
         ZStack {
             Color.black.opacity(0.4).ignoresSafeArea()
@@ -109,180 +190,218 @@ struct NewPlayerControlsView: View {
 
             VStack {
                 // Top Bar
-                HStack {
+                HStack(spacing: 12) {
                     Button(action: onBack) {
                         Image(systemName: "chevron.left")
-                            .font(.title2)
+                            .font(.system(size: isIpad ? 20 : 18, weight: .semibold))
                             .foregroundColor(.white)
-                            .padding(12)
-                            .background(Circle().fill(Color.black.opacity(0.5)))
+                            .frame(width: 44, height: 44)
+                            .background(Color.black.opacity(0.5))
+                            .clipShape(Circle())
                     }
 
-                    Text(viewModel.currentChannel?.name ?? "Live TV")
-                        .font(.headline)
+                    Text(viewModel.videoTitle)
+                        .font(.system(size: isIpad ? 20 : 17, weight: .semibold))
                         .foregroundColor(.white)
-                        .shadow(radius: 2)
+                        .lineLimit(1)
                         .padding(.leading, 8)
 
                     Spacer()
 
-                    // Right Side Icons
-                    Button(action: {}) {
-                        Image(systemName: "captions.bubble")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                            .padding(8)
-                    }
-
-                    HStack(spacing: 6) {
-                        Circle().fill(Color.red).frame(width: 8, height: 8)
-                        Text("LIVE").font(.caption).fontWeight(.bold).foregroundColor(.white)
-                    }
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color.white.opacity(0.2))
-                    .cornerRadius(4)
-
-                    Button(action: {}) {
-                        Image(systemName: "ellipsis")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                            .padding(8)
-                            .rotationEffect(.degrees(90))
+                    // Right Side Top Bar Icons
+                    HStack(spacing: 12) {
+                        Button(action: { /* Audio options - future implementation */ }) {
+                            Image(systemName: "speaker.wave.2")
+                                .font(.system(size: isIpad ? 20 : 18))
+                                .foregroundColor(.white)
+                        }
+                        .glassButton()
+                        
+                        Button(action: { viewModel.togglePiP() }) {
+                            Image(systemName: "pip.enter")
+                                .font(.system(size: isIpad ? 20 : 18))
+                                .foregroundColor(.white)
+                        }
+                        .glassButton()
+                        
+                        // Live Indicator
+                        HStack(spacing: 6) {
+                            Circle()
+                                .fill(Color.red)
+                                .frame(width: 8, height: 8)
+                                .opacity(isLiveDotVisible ? 1.0 : 0.2)
+                            Text("LIVE")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                        }
+                        .glassButton()
                     }
                 }
-                .padding()
+                .padding(.horizontal, isLandscape ? (isIpad ? 80 : 50) : (isIpad ? 30 : 20))
+                .padding(.top, isLandscape ? 20 : 40)
+                .padding(.bottom, 10)
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.black.opacity(0.8), Color.clear]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
 
                 Spacer()
 
-                // Center Controls
-                HStack(spacing: 60) {
-                    Button(action: { /* Prev */  }) {
-                        Image(systemName: "backward.end.fill")
-                            .font(.system(size: 28))
-                            .foregroundColor(.white.opacity(0.8))
-                    }
-
-                    Button(action: {
-                        viewModel.togglePlayPause()
-                        resetTimer()
-                    }) {
-                        ZStack {
-                            Circle().fill(Color.black.opacity(0.4))
-                                .frame(width: 70, height: 70)
-                            Image(
-                                systemName: viewModel.isPlaying
-                                    ? "pause.fill" : "play.fill"
-                            )
-                            .font(.system(size: 35))
-                            .foregroundColor(.white)
-                        }
-                    }
-
-                    Button(action: {
-                        viewModel.playNext()
-                        resetTimer()
-                    }) {
-                        Image(systemName: "forward.end.fill")
-                            .font(.system(size: 28))
-                            .foregroundColor(.white.opacity(0.8))
+                // Center Play/Pause Control
+                Button(action: {
+                    let impact = UIImpactFeedbackGenerator(style: .medium)
+                    impact.impactOccurred()
+                    viewModel.togglePlayPause()
+                    resetTimer()
+                }) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: isIpad ? 84 : 74, height: isIpad ? 84 : 74)
+                        
+                        Image(systemName: viewModel.isPlaying ? "pause.fill" : "play.fill")
+                            .font(.system(size: isIpad ? 36 : 34))
+                            .foregroundColor(.black)
                     }
                 }
 
                 Spacer()
 
                 // Bottom Bar
-                HStack(spacing: 25) {
-                    // Lock
-                    Button(action: { withAnimation { viewModel.toggleLock() } }) {
-                        VStack(spacing: 4) {
-                            Image(systemName: "lock.open")
-                                .font(.system(size: 20))
-                            Text("Lock").font(.caption2)
+                VStack(spacing: 8) {
+                    // Seek Bar if not live
+                    if !viewModel.duration.isInfinite && viewModel.duration > 0 {
+                        HStack {
+                            Text(formatTime(viewModel.currentTime))
+                                .font(.system(size: 11, weight: .semibold))
+                                .foregroundColor(.white)
+                                .monospacedDigit()
+                            
+                            Slider(value: Binding(
+                                get: { viewModel.currentTime },
+                                set: { newValue in
+                                    viewModel.seek(to: newValue)
+                                    resetTimer()
+                                }
+                            ), in: 0...viewModel.duration)
+                            .tint(.white)
+                            
+                            Text(formatTime(viewModel.duration))
+                                .font(.system(size: 11, weight: .semibold))
+                                .foregroundColor(.white)
+                                .monospacedDigit()
                         }
-                        .foregroundColor(.white)
+                        .padding(.horizontal, 8)
                     }
-
-                    Spacer()
-
-                    // Audio
-                    Button(action: {}) {
-                        VStack(spacing: 4) {
-                            Image(systemName: "headphones")
-                                .font(.system(size: 20))
-                            Text("Audio").font(.caption2)
+                    
+                    // Controls Row
+                    HStack(spacing: 16) {
+                        Button(action: {
+                            withAnimation { viewModel.toggleLock() }
+                            resetTimer()
+                        }) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "lock.open")
+                                    .font(.system(size: 14))
+                                Text("Lock")
+                                    .font(.system(size: 13, weight: .medium))
+                            }
+                            .foregroundColor(.white)
+                            .glassButton()
                         }
-                        .foregroundColor(.white)
-                    }
 
-                    // PiP
-                    Button(action: { viewModel.togglePiP() }) {
-                        VStack(spacing: 4) {
-                            Image(systemName: "pip.enter")
-                                .font(.system(size: 20))
-                            Text("PiP").font(.caption2)
+                        Spacer()
+                        
+                        Button(action: {
+                            viewModel.toggleAspectRatio()
+                            resetTimer()
+                        }) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "aspectratio")
+                                    .font(.system(size: 14))
+                                Text(viewModel.aspectRatio.label)
+                                    .font(.system(size: 13, weight: .medium))
+                            }
+                            .foregroundColor(.white)
+                            .glassButton()
                         }
-                        .foregroundColor(.white)
-                    }
 
-                    // Queue
-                    Button(action: {
-                        withAnimation {
-                            showQueue = true
-                            viewModel.isControlsVisible = false
+                        Button(action: {
+                            viewModel.toggleRotation()
+                            resetTimer()
+                        }) {
+                            Image(systemName: "viewfinder")
+                                .font(.system(size: 18))
+                                .foregroundColor(.white)
+                                .frame(width: 32, height: 32)
                         }
-                    }) {
-                        VStack(spacing: 4) {
-                            Image(systemName: "list.bullet")
-                                .font(.system(size: 20))
-                            Text("Queue").font(.caption2)
-                        }
-                        .foregroundColor(.white)
-                    }
 
-                    // Aspect Ratio
-                    Button(action: { viewModel.toggleAspectRatio() }) {
-                        VStack(spacing: 4) {
-                            Image(systemName: "aspectratio")
-                                .font(.system(size: 20))
-                            Text("Resize").font(.caption2)
+                        Button(action: {
+                            withAnimation {
+                                showQueue = true
+                                viewModel.isControlsVisible = false
+                            }
+                        }) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "list.bullet")
+                                    .font(.system(size: 14))
+                                Text("Queue")
+                                    .font(.system(size: 13, weight: .medium))
+                            }
+                            .foregroundColor(.white)
+                            .glassButton()
                         }
-                        .foregroundColor(.white)
-                    }
-
-                    // Rotate
-                    Button(action: { viewModel.toggleRotation() }) {
-                        VStack(spacing: 4) {
-                            Image(systemName: "arrow.triangle.2.circlepath")
-                                .font(.system(size: 20))
-                            Text("Rotate").font(.caption2)
-                        }
-                        .foregroundColor(.white)
                     }
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 15)
-                .background(Color.black.opacity(0.8))
+                .padding(.horizontal, isLandscape ? (isIpad ? 80 : 50) : (isIpad ? 30 : 20))
+                .padding(.top, 15)
+                .padding(.bottom, isLandscape ? 15 : 30)
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.clear, Color.black.opacity(0.9)]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
             }
         }
     }
 
     private var lockOverlay: some View {
         Group {
-            if viewModel.isLocked && viewModel.isControlsVisible {
-                HStack {
-                    Button(action: {
-                        withAnimation { viewModel.toggleLock() }
-                        resetTimer()
-                    }) {
-                        Image(systemName: "lock.fill")
-                            .font(.title)
-                            .foregroundColor(.blue)
-                            .padding()
-                            .background(Circle().fill(Color.white))
+            if viewModel.isLocked {
+                Color.black.opacity(0.001)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        withAnimation { viewModel.isControlsVisible.toggle() }
+                        if viewModel.isControlsVisible { resetTimer() }
                     }
-                    .padding(.leading, 30)
-                    Spacer()
+                    .ignoresSafeArea()
+                
+                if viewModel.isControlsVisible {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                withAnimation { viewModel.toggleLock() }
+                                resetTimer()
+                            }) {
+                                Image(systemName: "lock.fill")
+                                    .font(.system(size: 20))
+                                    .foregroundColor(.white)
+                                    .padding(12)
+                                    .background(Color.black.opacity(0.5))
+                                    .clipShape(Circle())
+                            }
+                            .padding(.trailing, isLandscape ? 50 : 20)
+                            .padding(.top, isLandscape ? 20 : 40)
+                        }
+                        Spacer()
+                    }
                 }
             }
         }
@@ -293,19 +412,61 @@ struct NewPlayerControlsView: View {
             if viewModel.showBrightnessUI {
                 VerticalSliderView(value: viewModel.currentBrightness, iconName: "sun.max.fill")
                     .transition(.opacity)
-                    .padding(.leading, 20)
+                    .padding(.leading, isLandscape ? 50 : 20)
             }
             Spacer()
         }
         .allowsHitTesting(false)
     }
 
+    // MARK: - Helpers
     private func resetTimer() {
         hideTimer?.invalidate()
-        hideTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in
-            withAnimation {
-                viewModel.isControlsVisible = false
+        if !viewModel.isLocked {
+            hideTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    viewModel.isControlsVisible = false
+                }
             }
+        }
+    }
+    
+    private func getScreenWidth() -> CGFloat {
+        #if os(iOS)
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                return windowScene.screen.bounds.width
+            }
+            return UIScreen.main.bounds.width
+        #elseif os(macOS)
+            return NSScreen.main?.frame.width ?? 1000
+        #else
+            return 800
+        #endif
+    }
+    
+    private func getScreenHeight() -> CGFloat {
+        #if os(iOS)
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                return windowScene.screen.bounds.height
+            }
+            return UIScreen.main.bounds.height
+        #elseif os(macOS)
+            return NSScreen.main?.frame.height ?? 1000
+        #else
+            return 800
+        #endif
+    }
+    
+    private func formatTime(_ seconds: Double) -> String {
+        let totalSeconds = Int(max(0, seconds))
+        let hours = totalSeconds / 3600
+        let minutes = (totalSeconds % 3600) / 60
+        let secs = totalSeconds % 60
+        
+        if hours > 0 {
+            return String(format: "%d:%02d:%02d", hours, minutes, secs)
+        } else {
+            return String(format: "%02d:%02d", minutes, secs)
         }
     }
 }
