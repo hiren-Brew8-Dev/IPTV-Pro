@@ -36,10 +36,8 @@ struct PlayerTopBar: View {
                         Image(systemName: "chevron.left")
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.white)
-                            .padding(10)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
                     }
+                    .glassButtonStyle()
                     
                     // Title - Truncated based on device
                     let prefixLimit = isIpad ? 40 : 15
@@ -65,7 +63,7 @@ struct PlayerTopBar: View {
                             .font(.system(size: isIpad ? 24 : 20))
                             .foregroundColor(.white)
                     }
-                    .frame(width: isIpad ? 50 : 44, height: isIpad ? 50 : 44)
+                    .glassButtonStyle()
                 }
             }
             .padding(.horizontal, isLandscape ? (isIpad ? 80 : 50) : (isIpad ? 30 : 8))
@@ -74,7 +72,7 @@ struct PlayerTopBar: View {
         .padding(.bottom, 10)
         .background(
             LinearGradient(
-                gradient: Gradient(colors: [Color.black.opacity(0.8), Color.clear]),
+                gradient: Gradient(colors: [Color.black.opacity(0.7), Color.black.opacity(0.4), Color.clear]),
                 startPoint: .top,
                 endPoint: .bottom
             )

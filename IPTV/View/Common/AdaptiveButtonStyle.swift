@@ -58,4 +58,8 @@ extension View {
         self
         #endif
     }
+    
+    var isIpad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
 }

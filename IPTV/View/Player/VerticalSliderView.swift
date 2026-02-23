@@ -14,7 +14,12 @@ struct VerticalSliderView: View {
             Image(systemName: iconName).font(.system(size: 20)).foregroundColor(color)
         }
         .padding(12)
-        .background(Color.black.opacity(0.6))
-        .cornerRadius(20)
+        .background(.ultraThinMaterial)
+        .background(Color.white.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.white.opacity(0.2), lineWidth: 0.5)
+        )
     }
 }

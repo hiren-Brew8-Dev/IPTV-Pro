@@ -237,10 +237,23 @@ struct PlayerControlsView: View {
                             viewModel.togglePiP()
                             resetTimer()
                         },
-                        onAspectRatio: { _ in
-                            viewModel.toggleAspectRatio()
+                        onAspectRatio: { ratio in
+                            viewModel.setAspectRatio(ratio)
                             resetTimer()
                         },
+                        onAudioCaptions: {
+                            HapticsManager.shared.generate(.medium)
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                viewModel.showTrackSelectionSheet = true
+                                viewModel.isControlsVisible = false
+                            }
+                        },
+                        onSpeedChange: { speed in
+                            viewModel.setPlaybackSpeed(speed)
+                            resetTimer()
+                        },
+                        playbackSpeed: viewModel.playbackSpeed,
+                        currentAspectRatio: viewModel.currentAspectRatio,
                         onLock: {
                             handleLockToggle()
                         },
@@ -291,11 +304,10 @@ struct PlayerControlsView: View {
                 resetTimer()
             }) {
                     Image(systemName: "gobackward.10")
-                        .font(.system(size: isIpad ? 36 : 30, weight: .regular))
+                        .font(.system(size: isIpad ? 36 : 28, weight: .regular))
                         .foregroundColor(.white)
-                        .frame(width: isIpad ? 64 : 54, height: isIpad ? 64 : 54)
-                        .contentShape(Rectangle())
             }
+            .glassButtonStyle()
             
             // Play/Pause
             Button(action: {
@@ -305,14 +317,20 @@ struct PlayerControlsView: View {
             }) {
                 ZStack {
                     Circle()
-                        .fill(Color.white)
-                        .frame(width: isIpad ? 84 : 74, height: isIpad ? 84 : 74)
+                        .fill(.ultraThinMaterial)
+                        .background(Circle().fill(Color.white.opacity(0.1)))
+                        .frame(width: isIpad ? 90 : 80, height: isIpad ? 90 : 80)
+                        .overlay(
+                            Circle()
+                                .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                        )
                     
                     Image(systemName: viewModel.isPlaying ? "pause.fill" : "play.fill")
-                        .font(.system(size: isIpad ? 36 : 34))
-                        .foregroundColor(.black)
+                        .font(.system(size: isIpad ? 42 : 36))
+                        .foregroundColor(.white)
                 }
             }
+            .scaleEffect(1.1)
             
             // Skip Forward 10s
             Button(action: {
@@ -322,11 +340,10 @@ struct PlayerControlsView: View {
                 resetTimer()
             }) {
                     Image(systemName: "goforward.10")
-                        .font(.system(size: isIpad ? 36 : 30, weight: .regular))
+                        .font(.system(size: isIpad ? 36 : 28, weight: .regular))
                         .foregroundColor(.white)
-                        .frame(width: isIpad ? 64 : 54, height: isIpad ? 64 : 54)
-                        .contentShape(Rectangle())
             }
+            .glassButtonStyle()
         }
     }
     
@@ -595,16 +612,12 @@ struct PlayerControlsView: View {
     
     private func playbackButton(icon: String, size: CGFloat, frameSize: CGFloat, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            ZStack {
-                Circle()
-                .fill(Color.black.opacity(0.4))
-                .frame(width: frameSize, height: frameSize)
-                Image(systemName: icon)
-                    .font(.system(size: size))
-                    .foregroundColor(.white)
-                    .animation(nil, value: icon)
-            }
+            Image(systemName: icon)
+                .font(.system(size: size))
+                .foregroundColor(.white)
+                .animation(nil, value: icon)
         }
+        .glassButtonStyle()
     }
 }
 

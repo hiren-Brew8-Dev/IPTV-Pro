@@ -26,6 +26,7 @@ enum PlayerMenuType: Equatable {
     case playingMode
     case playbackSpeed
     case casting
+    case aspectRatio
 }
 
 enum VideoAspectRatio: String, CaseIterable {
@@ -113,6 +114,9 @@ class NewPlayerViewModel: NSObject, ObservableObject {
     @MainActor @Published var playlist: [Channel] = []
     @MainActor @Published var currentChannel: Channel?
     @MainActor @Published var currentIndex: Int = 0
+    @MainActor @Published var activeMenu: PlayerMenuType = .none
+    @MainActor @Published var playbackSpeed: Float = 1.0
+    @MainActor @Published var currentAspectRatio: VideoAspectRatio = .fit
 
     // UI State
     @MainActor @Published var showBrightnessUI: Bool = false
@@ -136,13 +140,10 @@ class NewPlayerViewModel: NSObject, ObservableObject {
     @MainActor @Published var isSeekUIActive: Bool = false
     @MainActor @Published var isLongPress2xActive: Bool = false
     
-    // Menu State
-    @MainActor @Published var activeMenu: PlayerMenuType = .none
     
     // Bookmarks
     @MainActor @Published var bookmarks: [Double] = []
     @Published var playingMode: PlayingMode = .playInOrder
-    @Published var playbackSpeed: Double = 1.0
     @Published var sleepTimerMode: SleepTimerMode = .off
     @Published var isSleepTimerActive: Bool = false
     @Published var audioDelay: Double = 0.0
@@ -172,9 +173,10 @@ class NewPlayerViewModel: NSObject, ObservableObject {
     }
     
     
-    func setSpeed(_ speed: Double) {
+    @MainActor
+    func setSpeed(_ speed: Float) {
         playbackSpeed = speed
-        player?.rate = Float(speed)
+        player?.rate = speed
     }
     
     func cancelSleepTimer() {
@@ -362,6 +364,17 @@ class NewPlayerViewModel: NSObject, ObservableObject {
     func performDoubleTapSeek(forward: Bool) {
         let delta = forward ? 10.0 : -10.0
         seek(to: currentTime + delta)
+    }
+
+    @MainActor
+    func setAspectRatio(_ ratio: VideoAspectRatio) {
+        self.currentAspectRatio = ratio
+    }
+    
+    @MainActor
+    func setPlaybackSpeed(_ speed: Float) {
+        self.playbackSpeed = speed
+        player?.rate = speed
     }
 
     @MainActor

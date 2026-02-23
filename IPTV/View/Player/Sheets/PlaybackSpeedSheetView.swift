@@ -113,8 +113,8 @@ struct PlaybackSpeedSheetView: View {
                 
                 CustomSlider(
                     value: Binding(
-                        get: { viewModel.playbackSpeed },
-                        set: { updateSpeed($0) }
+                        get: { Double(viewModel.playbackSpeed) },
+                        set: { updateSpeed(Float($0)) }
                     ),
                     range: 0.25...2.0,
                     step: 0.05,
@@ -145,7 +145,7 @@ struct PlaybackSpeedSheetView: View {
             
             HStack(spacing: 10) {
                 ForEach([0.25, 0.5, 1.0, 1.25, 1.5, 2.0], id: \.self) { speed in
-                    presetButton(speed)
+                    presetButton(Float(speed))
                 }
             }
         }
@@ -164,7 +164,7 @@ struct PlaybackSpeedSheetView: View {
         }
     }
     
-    private func presetButton(_ speed: Double) -> some View {
+    private func presetButton(_ speed: Float) -> some View {
         let isSelected = abs(viewModel.playbackSpeed - speed) < 0.01
         
         return Button(action: {
@@ -180,7 +180,7 @@ struct PlaybackSpeedSheetView: View {
         }
     }
     
-    private func updateSpeed(_ speed: Double) {
+    private func updateSpeed(_ speed: Float) {
         let clamped = min(max(speed, 0.25), 2.0)
         viewModel.setSpeed(clamped)
     }
