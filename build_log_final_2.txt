@@ -1,0 +1,501 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project IPTV.xcodeproj -scheme IPTV -configuration Debug -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 17" build
+
+Build settings from command line:
+    SDKROOT = iphonesimulator26.0
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  Kingfisher: https://github.com/onevcat/Kingfisher @ 8.6.2
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (4 targets)
+    Target 'IPTV' in project 'IPTV'
+        ➜ Explicit dependency on target 'Kingfisher' in project 'Kingfisher'
+    Target 'Kingfisher' in project 'Kingfisher'
+        ➜ Explicit dependency on target 'Kingfisher' in project 'Kingfisher'
+        ➜ Explicit dependency on target 'Kingfisher_Kingfisher' in project 'Kingfisher'
+    Target 'Kingfisher' in project 'Kingfisher'
+        ➜ Explicit dependency on target 'Kingfisher_Kingfisher' in project 'Kingfisher'
+    Target 'Kingfisher_Kingfisher' in project 'Kingfisher' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/momc --dry-run --action generate --swift-version 5.0 --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk --iphonesimulator-deployment-target 17.0 --module IPTV /Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/IPTV.xcdatamodeld /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ReadFileContents /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/share/docc/features.json
+
+Build description signature: fabda01e51831d768f9bf3bd541d21ff
+Build description path: /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/XCBuildData/fabda01e51831d768f9bf3bd541d21ff.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.0-23A339-3885c01c3e6b6a337905948deab2002e26257891a6c027eb51374368541b8346.sdkstatcache
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -o /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.0-23A339-3885c01c3e6b6a337905948deab2002e26257891a6c027eb51374368541b8346.sdkstatcache
+
+ProcessInfoPlistFile /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/Kingfisher_Kingfisher.bundle/Info.plist /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/Kingfisher.build/Debug-iphonesimulator/Kingfisher_Kingfisher.build/empty-Kingfisher_Kingfisher.plist (in target 'Kingfisher_Kingfisher' from project 'Kingfisher')
+    cd /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/SourcePackages/checkouts/Kingfisher
+    builtin-infoPlistUtility /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/Kingfisher.build/Debug-iphonesimulator/Kingfisher_Kingfisher.build/empty-Kingfisher_Kingfisher.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/Kingfisher_Kingfisher.bundle/Info.plist
+
+Copy /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/IPTV.app/Kingfisher_Kingfisher.bundle /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/Kingfisher_Kingfisher.bundle (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/Kingfisher_Kingfisher.bundle /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/IPTV.app
+
+SwiftDriver IPTV normal arm64 com.apple.xcode.tools.swift.compiler (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name IPTV -Onone -enforce-exclusivity\=checked @/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator -F /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.0-23A339-3885c01c3e6b6a337905948deab2002e26257891a6c027eb51374368541b8346.sdkstatcache -output-file-map /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV_const_extract_protocols.json -Xcc -iquote -Xcc /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/IPTV-generated-files.hmap -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/IPTV-own-target-headers.hmap -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/IPTV-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV-1e1fb298ce6bf24a3074ca23e52cd4dc-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/IPTV-project-headers.hmap -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources-normal/arm64 -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/arm64 -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV-Swift.h -working-directory /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV -experimental-emit-module-separately -disable-cmo
+
+ProcessInfoPlistFile /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/IPTV.app/Info.plist /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/empty-IPTV.plist (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    builtin-infoPlistUtility /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/empty-IPTV.plist -producttype com.apple.product-type.application -genpkginfo /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/IPTV.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/assetcatalog_generated_info.plist -scanforprivacyfile /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/IPTV.app/Kingfisher_Kingfisher.bundle -o /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/IPTV.app/Info.plist
+
+SwiftCompile normal arm64 Compiling\ MainMenuView.swift,\ DownloadsView.swift,\ OnboardingView.swift,\ CustomSlider.swift,\ PlayerBottomBar.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Common/MainMenuView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Downloads/DownloadsView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Onboarding/OnboardingView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/BottomBar/CustomSlider.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/BottomBar/PlayerBottomBar.swift (in target 'IPTV' from project 'IPTV')
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Common/MainMenuView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Downloads/DownloadsView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Onboarding/OnboardingView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/BottomBar/CustomSlider.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/BottomBar/PlayerBottomBar.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 Compiling\ PlayingModeSheetView.swift,\ SettingsSheetView.swift,\ SleepTimerSheetView.swift,\ SubtitleEditView.swift,\ SubtitleOnlineView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/PlayingModeSheetView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SettingsSheetView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SleepTimerSheetView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SubtitleEditView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SubtitleOnlineView.swift (in target 'IPTV' from project 'IPTV')
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/PlayingModeSheetView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SettingsSheetView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SleepTimerSheetView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SubtitleEditView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SubtitleOnlineView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 Compiling\ ChannelGroupView.swift,\ ChannelListView.swift,\ FavoritesView.swift,\ AdaptiveButtonStyle.swift,\ CachedImage.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Channels/ChannelGroupView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Channels/ChannelListView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Channels/FavoritesView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Common/AdaptiveButtonStyle.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Common/CachedImage.swift (in target 'IPTV' from project 'IPTV')
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Channels/ChannelGroupView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Channels/ChannelListView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Channels/FavoritesView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Common/AdaptiveButtonStyle.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Common/CachedImage.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 Compiling\ ChannelQueueView.swift,\ CustomVideoPlayer.swift,\ PlayerControlsView.swift,\ PlayerGestureOverlay.swift,\ PlayerView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/ChannelQueueView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/CustomVideoPlayer.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/PlayerControlsView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/PlayerGestureOverlay.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/PlayerView.swift (in target 'IPTV' from project 'IPTV')
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/ChannelQueueView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/CustomVideoPlayer.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/PlayerControlsView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/PlayerGestureOverlay.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/PlayerView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 Compiling\ SubtitleSettingsView.swift,\ TrackSelectionView.swift,\ CastButton.swift,\ PlayerTopBar.swift,\ AirPlayButton.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SubtitleSettingsView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/TrackSelectionView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/TopBar/CastButton.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/TopBar/PlayerTopBar.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/AirPlayButton.swift (in target 'IPTV' from project 'IPTV')
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SubtitleSettingsView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/TrackSelectionView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/TopBar/CastButton.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/TopBar/PlayerTopBar.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/AirPlayButton.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 Compiling\ M3UItem.swift,\ M3UParser.swift,\ MenuOption.swift,\ Persistence.swift,\ DownloadManager.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/M3UItem.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/M3UParser.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/MenuOption.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/Persistence.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Utilities/DownloadManager.swift (in target 'IPTV' from project 'IPTV')
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/M3UItem.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/M3UParser.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/Model/M3UParser.swift:18:25: warning: main actor-isolated instance method 'parse(content:)' cannot be called from outside of the actor; this is an error in the Swift 6 language mode
+            return self.parse(content: content)
+                   ~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+                   await 
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/MenuOption.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/Persistence.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Utilities/DownloadManager.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 Compiling\ PlayerUtilities.swift,\ AudioCaptionsSheet.swift,\ CastingModeSheet.swift,\ LanguagePickerSheet.swift,\ PlaybackSpeedSheetView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Common/PlayerUtilities.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/AudioCaptionsSheet.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/CastingModeSheet.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/LanguagePickerSheet.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/PlaybackSpeedSheetView.swift (in target 'IPTV' from project 'IPTV')
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Common/PlayerUtilities.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/AudioCaptionsSheet.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/CastingModeSheet.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/LanguagePickerSheet.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/PlaybackSpeedSheetView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ IPTV (in target 'IPTV' from project 'IPTV')
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -emit-module -experimental-skip-non-inlinable-function-bodies-without-types /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/M3UItem.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/M3UParser.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/MenuOption.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Model/Persistence.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/Utilities/DownloadManager.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Channels/ChannelGroupView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Channels/ChannelListView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Channels/FavoritesView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Common/AdaptiveButtonStyle.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Common/CachedImage.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Common/MainMenuView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Downloads/DownloadsView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Onboarding/OnboardingView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/BottomBar/CustomSlider.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/BottomBar/PlayerBottomBar.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Common/PlayerUtilities.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/AudioCaptionsSheet.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/CastingModeSheet.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/LanguagePickerSheet.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/PlaybackSpeedSheetView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/PlayingModeSheetView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SettingsSheetView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SleepTimerSheetView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SubtitleEditView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SubtitleOnlineView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/SubtitleSettingsView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/Sheets/TrackSelectionView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/TopBar/CastButton.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/TopBar/PlayerTopBar.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/AirPlayButton.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/ChannelQueueView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/CustomVideoPlayer.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/PlayerControlsView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/PlayerGestureOverlay.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/PlayerView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/VerticalSliderView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Playlist/AddPlaylistView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Playlist/PlaylistListView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Root/RootView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Settings/SettingsView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/ChannelViewModel.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/PlayerViewModel.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/PlaylistViewModel.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/SystemVolumeManager.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/IPTVApp.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Playlist+CoreDataClass.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Playlist+CoreDataProperties.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Channel+CoreDataClass.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Channel+CoreDataProperties.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/DownloadedVideo+CoreDataClass.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/DownloadedVideo+CoreDataProperties.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/IPTV+CoreDataModel.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/GeneratedAssetSymbols.swift -target arm64-apple-ios17.0-simulator -module-can-import-version DeveloperToolsSupport 23.0.4 23.0.4 -module-can-import-version SwiftUI 7.0.84.1 7.0.84 -module-can-import-version UIKit 9088.1.113 9088.1.113 -disable-cross-import-overlay-search -swift-module-cross-import AVKit /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/AVKit.framework/Modules/AVKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import AVKit /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk/System/Library/Frameworks/AVKit.framework/Modules/AVKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import CoreData /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/CoreData.framework/Modules/CoreData.swiftcrossimport/CloudKit.swiftoverlay -swift-module-cross-import CoreData /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk/System/Library/Frameworks/CoreData.framework/Modules/CoreData.swiftcrossimport/CloudKit.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libTipKitMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#TipKitMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -I /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator -F /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=4 -module-cache-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -swift-version 5 -enforce-exclusivity\=checked -Onone -D DEBUG -serialize-debugging-options -const-gather-protocols-file /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV_const_extract_protocols.json -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -default-isolation\=MainActor -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV -enable-anonymous-context-mangled-names -file-compilation-dir /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.0-23A339-3885c01c3e6b6a337905948deab2002e26257891a6c027eb51374368541b8346.sdkstatcache -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/IPTV-generated-files.hmap -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/IPTV-own-target-headers.hmap -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/IPTV-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV-1e1fb298ce6bf24a3074ca23e52cd4dc-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/IPTV-project-headers.hmap -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources-normal/arm64 -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/arm64 -Xcc -I/Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name IPTV -frontend-parseable-output -disable-clang-spi -target-sdk-version 26.0 -target-sdk-name iphonesimulator26.0 -clang-target arm64-apple-ios26.0-simulator -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -emit-module-doc-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV.swiftdoc -emit-module-source-info-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV.swiftsourceinfo -emit-objc-header-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV-Swift.h -serialize-diagnostics-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV-primary-emit-module.dia -emit-dependencies-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV-primary-emit-module.d -o /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV.swiftmodule -emit-abi-descriptor-path /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/Objects-normal/arm64/IPTV.abi.json
+
+EmitSwiftModule normal arm64 (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/View/Player/Sheets/SubtitleOnlineView.swift:8:44: error: cannot find 'YIFYSubtitleService' in scope
+    @StateObject private var yifyService = YIFYSubtitleService()
+                                           ^~~~~~~~~~~~~~~~~~~
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/View/Player/Sheets/SubtitleOnlineView.swift:12:39: error: cannot find type 'YIFYSubtitle' in scope
+    @State private var selectedMovie: YIFYSubtitle? // Track selected movie for 2-step flow
+                                      ^~~~~~~~~~~~
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/View/Player/Sheets/SubtitleOnlineView.swift:76:40: error: cannot find type 'YIFYSubtitle' in scope
+    @State private var subtitlesList: [YIFYSubtitle] = []
+                                       ^~~~~~~~~~~~
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/View/Player/Sheets/SubtitleOnlineView.swift:220:33: error: cannot find type 'YIFYSubtitle' in scope
+    func handleMovieTap(_ item: YIFYSubtitle) {
+                                ^~~~~~~~~~~~
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/View/Player/Sheets/SubtitleOnlineView.swift:229:40: error: cannot find type 'YIFYSubtitle' in scope
+    func handleSubtitleDownload(_ sub: YIFYSubtitle) {
+                                       ^~~~~~~~~~~~
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:154:38: error: ambiguous use of 'init'
+    @Published var subtitleManager = SubtitleManager()
+                                     ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:140:12: note: found this candidate 
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:140:12: note: found this candidate 
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:186:12: note: found this candidate 
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:186:12: note: found this candidate 
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:192:38: error: ambiguous use of 'init'
+    @Published var subtitleManager = SubtitleManager()
+                                     ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:140:12: note: found this candidate 
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:140:12: note: found this candidate 
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:186:12: note: found this candidate 
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:186:12: note: found this candidate 
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:166:20: error: invalid redeclaration of 'sleepTimerRemainingString'
+    @Published var sleepTimerRemainingString: String? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:119:20: note: 'sleepTimerRemainingString' previously declared here
+    @Published var sleepTimerRemainingString: String? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:119:20: note: 'sleepTimerRemainingString' previously declared here
+    @Published var sleepTimerRemainingString: String? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:166:20: error: invalid redeclaration of synthesized property '$sleepTimerRemainingString'
+    @Published var sleepTimerRemainingString: String? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:119:20: note: '$sleepTimerRemainingString' synthesized for property wrapper projected value
+    @Published var sleepTimerRemainingString: String? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:166:20: error: invalid redeclaration of synthesized property '_sleepTimerRemainingString'
+    @Published var sleepTimerRemainingString: String? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:119:20: note: '_sleepTimerRemainingString' synthesized for property wrapper backing storage
+    @Published var sleepTimerRemainingString: String? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:167:20: error: invalid redeclaration of 'sleepTimerOriginalDuration'
+    @Published var sleepTimerOriginalDuration: TimeInterval? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:120:20: note: 'sleepTimerOriginalDuration' previously declared here
+    @Published var sleepTimerOriginalDuration: TimeInterval? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:120:20: note: 'sleepTimerOriginalDuration' previously declared here
+    @Published var sleepTimerOriginalDuration: TimeInterval? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:167:20: error: invalid redeclaration of synthesized property '$sleepTimerOriginalDuration'
+    @Published var sleepTimerOriginalDuration: TimeInterval? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:120:20: note: '$sleepTimerOriginalDuration' synthesized for property wrapper projected value
+    @Published var sleepTimerOriginalDuration: TimeInterval? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:167:20: error: invalid redeclaration of synthesized property '_sleepTimerOriginalDuration'
+    @Published var sleepTimerOriginalDuration: TimeInterval? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:120:20: note: '_sleepTimerOriginalDuration' synthesized for property wrapper backing storage
+    @Published var sleepTimerOriginalDuration: TimeInterval? = nil
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:169:10: error: invalid redeclaration of 'startSleepTimer(minutes:)'
+    func startSleepTimer(minutes: Int) {
+         ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:122:10: note: 'startSleepTimer(minutes:)' previously declared here
+    func startSleepTimer(minutes: Int) {
+         ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:122:10: note: 'startSleepTimer(minutes:)' previously declared here
+    func startSleepTimer(minutes: Int) {
+         ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:176:10: error: invalid redeclaration of 'setSleepTimerEndOfTrack()'
+    func setSleepTimerEndOfTrack() {
+         ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:128:10: note: 'setSleepTimerEndOfTrack()' previously declared here
+    func setSleepTimerEndOfTrack() {
+         ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:128:10: note: 'setSleepTimerEndOfTrack()' previously declared here
+    func setSleepTimerEndOfTrack() {
+         ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:180:20: error: invalid redeclaration of 'playbackSpeed'
+    @Published var playbackSpeed: Double = 1.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:105:20: note: 'playbackSpeed' previously declared here
+    @Published var playbackSpeed: Double = 1.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:105:20: note: 'playbackSpeed' previously declared here
+    @Published var playbackSpeed: Double = 1.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:180:20: error: invalid redeclaration of synthesized property '$playbackSpeed'
+    @Published var playbackSpeed: Double = 1.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:105:20: note: '$playbackSpeed' synthesized for property wrapper projected value
+    @Published var playbackSpeed: Double = 1.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:180:20: error: invalid redeclaration of synthesized property '_playbackSpeed'
+    @Published var playbackSpeed: Double = 1.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:105:20: note: '_playbackSpeed' synthesized for property wrapper backing storage
+    @Published var playbackSpeed: Double = 1.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:181:20: error: invalid redeclaration of 'sleepTimerMode'
+    @Published var sleepTimerMode: SleepTimerMode = .off
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:106:20: note: 'sleepTimerMode' previously declared here
+    @Published var sleepTimerMode: SleepTimerMode = .off
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:106:20: note: 'sleepTimerMode' previously declared here
+    @Published var sleepTimerMode: SleepTimerMode = .off
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:181:20: error: invalid redeclaration of synthesized property '$sleepTimerMode'
+    @Published var sleepTimerMode: SleepTimerMode = .off
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:106:20: note: '$sleepTimerMode' synthesized for property wrapper projected value
+    @Published var sleepTimerMode: SleepTimerMode = .off
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:181:20: error: invalid redeclaration of synthesized property '_sleepTimerMode'
+    @Published var sleepTimerMode: SleepTimerMode = .off
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:106:20: note: '_sleepTimerMode' synthesized for property wrapper backing storage
+    @Published var sleepTimerMode: SleepTimerMode = .off
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:182:20: error: invalid redeclaration of 'isSleepTimerActive'
+    @Published var isSleepTimerActive: Bool = false
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:107:20: note: 'isSleepTimerActive' previously declared here
+    @Published var isSleepTimerActive: Bool = false
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:107:20: note: 'isSleepTimerActive' previously declared here
+    @Published var isSleepTimerActive: Bool = false
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:182:20: error: invalid redeclaration of synthesized property '$isSleepTimerActive'
+    @Published var isSleepTimerActive: Bool = false
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:107:20: note: '$isSleepTimerActive' synthesized for property wrapper projected value
+    @Published var isSleepTimerActive: Bool = false
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:182:20: error: invalid redeclaration of synthesized property '_isSleepTimerActive'
+    @Published var isSleepTimerActive: Bool = false
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:107:20: note: '_isSleepTimerActive' synthesized for property wrapper backing storage
+    @Published var isSleepTimerActive: Bool = false
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:183:20: error: invalid redeclaration of 'audioDelay'
+    @Published var audioDelay: Double = 0.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:108:20: note: 'audioDelay' previously declared here
+    @Published var audioDelay: Double = 0.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:108:20: note: 'audioDelay' previously declared here
+    @Published var audioDelay: Double = 0.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:183:20: error: invalid redeclaration of synthesized property '$audioDelay'
+    @Published var audioDelay: Double = 0.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:108:20: note: '$audioDelay' synthesized for property wrapper projected value
+    @Published var audioDelay: Double = 0.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:183:20: error: invalid redeclaration of synthesized property '_audioDelay'
+    @Published var audioDelay: Double = 0.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:108:20: note: '_audioDelay' synthesized for property wrapper backing storage
+    @Published var audioDelay: Double = 0.0
+                   ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:186:12: error: invalid redeclaration of 'SubtitleManager'
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:140:12: note: 'SubtitleManager' previously declared here
+    struct SubtitleManager {
+           ^
+/Users/shivshankarttiwari/Documents/Pending Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift:140:12: note: 'SubtitleManager' previously declared here
+    struct SubtitleManager {
+           ^
+
+SwiftCompile normal arm64 Compiling\ IPTVApp.swift,\ Playlist+CoreDataClass.swift,\ Playlist+CoreDataProperties.swift,\ Channel+CoreDataClass.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/IPTVApp.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Playlist+CoreDataClass.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Playlist+CoreDataProperties.swift /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Channel+CoreDataClass.swift (in target 'IPTV' from project 'IPTV')
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/IPTVApp.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Playlist+CoreDataClass.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Playlist+CoreDataProperties.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Library/Developer/Xcode/DerivedData/IPTV-eahagpsnkamlxmesxtplqdlwxzxw/Build/Intermediates.noindex/IPTV.build/Debug-iphonesimulator/IPTV.build/DerivedSources/CoreDataGenerated/IPTV/Channel+CoreDataClass.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 Compiling\ ChannelViewModel.swift,\ NewPlayerViewModel.swift,\ PlayerViewModel.swift,\ PlaylistViewModel.swift,\ SystemVolumeManager.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/ChannelViewModel.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/PlayerViewModel.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/PlaylistViewModel.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/SystemVolumeManager.swift (in target 'IPTV' from project 'IPTV')
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/ChannelViewModel.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/NewPlayerViewModel.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/PlayerViewModel.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/PlaylistViewModel.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/ViewModel/SystemVolumeManager.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 Compiling\ VerticalSliderView.swift,\ AddPlaylistView.swift,\ PlaylistListView.swift,\ RootView.swift,\ SettingsView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/VerticalSliderView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Playlist/AddPlaylistView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Playlist/PlaylistListView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Root/RootView.swift /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Settings/SettingsView.swift (in target 'IPTV' from project 'IPTV')
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Player/VerticalSliderView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Playlist/AddPlaylistView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Playlist/PlaylistListView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Root/RootView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftCompile normal arm64 /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV/IPTV/View/Settings/SettingsView.swift (in target 'IPTV' from project 'IPTV')
+    cd /Users/shivshankarttiwari/Documents/Pending\ Projects/IPTV
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling IPTVApp.swift, Playlist+CoreDataClass.swift, Playlist+CoreDataProperties.swift, Channel+CoreDataClass.swift (in target 'IPTV' from project 'IPTV')
+

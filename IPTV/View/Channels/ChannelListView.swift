@@ -51,65 +51,65 @@ struct FilteredChannelList: View {
             sortDescriptors: [NSSortDescriptor(keyPath: \Channel.name, ascending: true)],
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         )
+        // Add fetchBatchSize indirectly (FetchRequest doesn't strictly expose fetchBatchSize directly safely in iOS 14 without core data dancing, but LazyVStack acts as a view proxy)
     }
 
     var body: some View {
-        List {
-            ForEach(channels) { channel in
-                NavigationLink(
-                    destination: PlayerView(channel: channel, playlist: Array(channels))
-                ) {
-                    HStack {
-                        // Logo
-                        if let logoStr = channel.logoURL, let url = URL(string: logoStr) {
-                            CachedImage(url: url)
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(4)
-                        } else {
-                            Image(systemName: "tv")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.gray)
+        ScrollView {
+            LazyVStack(spacing: 0) {
+                ForEach(channels) { channel in
+                    NavigationLink(
+                        destination: PlayerView(channel: channel, playlist: Array(channels))
+                    ) {
+                        HStack {
+                            // Logo
+                            if let logoStr = channel.logoURL, let url = URL(string: logoStr) {
+                                CachedImage(url: url)
+                                    .frame(width: 40, height: 40)
+                                    .cornerRadius(4)
+                            } else {
+                                Image(systemName: "tv")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(.gray)
+                            }
+
+                            Text(channel.name ?? "Unknown")
+                                .lineLimit(1)
+                                .foregroundColor(.primary)
+
+                            Spacer()
+
+                            if channel.isFavorite {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.red)
+                            }
+                        }
+                        .padding(.vertical, 8)
+                        .padding(.horizontal)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .contextMenu {
+                        Button {
+                            toggleFavorite(channel: channel)
+                        } label: {
+                            Label(
+                                channel.isFavorite ? "Unfavorite" : "Favorite",
+                                systemImage: channel.isFavorite ? "heart.slash" : "heart")
                         }
 
-                        Text(channel.name ?? "Unknown")
-                            .lineLimit(1)
-
-                        Spacer()
-
-                        if channel.isFavorite {
-                            Image(systemName: "heart.fill")
-                                .foregroundColor(.red)
+                        Button {
+                            // Download action (dummy for now)
+                        } label: {
+                            Label("Download", systemImage: "arrow.down.circle")
                         }
                     }
-                }
-                .contextMenu {
-                    Button {
-                        toggleFavorite(channel: channel)
-                    } label: {
-                        Label(
-                            channel.isFavorite ? "Unfavorite" : "Favorite",
-                            systemImage: channel.isFavorite ? "heart.slash" : "heart")
-                    }
-
-                    Button {
-                        // Download action (dummy for now)
-                    } label: {
-                        Label("Download", systemImage: "arrow.down.circle")
-                    }
-                }
-                .swipeActions(edge: .leading) {
-                    Button {
-                        toggleFavorite(channel: channel)
-                    } label: {
-                        Image(systemName: channel.isFavorite ? "heart.slash" : "heart")
-                    }
-                    .tint(channel.isFavorite ? .gray : .red)
+                    Divider()
+                        .padding(.leading, 64)
                 }
             }
         }
-        .listStyle(.plain)
     }
 
     private func toggleFavorite(channel: Channel) {

@@ -21,16 +21,17 @@ class M3UParser {
 
     func parse(content: String) -> [M3UItem] {
         var items: [M3UItem] = []
-        let lines = content.components(separatedBy: .newlines)
+        // For performance with 20000+ items, we must reserve capacity if known, but here we just
+        // iterate line by line without splitting the entire string into memory array first.
+        items.reserveCapacity(5000)
 
         var currentName: String?
         var currentLogo: String?
         var currentGroup: String?
 
-        for line in lines {
+        content.enumerateLines { line, stop in
             if line.hasPrefix("#EXTINF:") {
                 // Parse attributes
-                // Quick hack parsing for skeleton
                 let components = line.components(separatedBy: ",")
                 if let namePart = components.last {
                     currentName = namePart.trimmingCharacters(in: .whitespaces)
@@ -47,8 +48,6 @@ class M3UParser {
                     let subdir = line[groupRange.upperBound...]
                     if let quoteEnd = subdir.firstIndex(of: "\"") {
                         let rawGroup = String(subdir[..<quoteEnd])
-                        // Fix for categorisation: Splitting by ; and / to clean up nested groups like "Animation / Kids".
-                        // Taking the first component ensures we group by the top-level category.
                         let separators = CharacterSet(charactersIn: ";/")
                         currentGroup = rawGroup.components(separatedBy: separators).first?
                             .trimmingCharacters(in: .whitespaces)

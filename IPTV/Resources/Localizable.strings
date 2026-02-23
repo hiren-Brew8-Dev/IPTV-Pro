@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  Video Player
+
+  Created by AI Assistant on 24/01/26.
+  
+*/
+
+// Common
+"Cancel" = "Cancel";
+"Done" = "Done";
+"Settings" = "Settings";
+
+// Dashboard
+"Videos" = "Videos";
+"Folders" = "Folders";
+"Library" = "Library";
+"Search..." = "Search...";
+
+// Actions
+"Play" = "Play";
+"Favorite" = "Favorite";
+"Unfavorite" = "Unfavorite";
+"Move to Folder" = "Move to Folder";
+"Rename" = "Rename";
+"Delete" = "Delete";
+"Share" = "Share";
+
+// Messages
+"Are you sure you want to delete this video? This cannot be undone." = "Are you sure you want to delete this video? This cannot be undone.";
+"Enter a new name for this video" = "Enter a new name for this video";

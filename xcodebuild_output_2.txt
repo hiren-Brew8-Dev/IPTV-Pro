@@ -1,0 +1,6 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -workspace IPTV.xcworkspace -scheme IPTV -configuration Debug -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 17" build
+
+Build settings from command line:
+    SDKROOT = iphonesimulator26.0
+

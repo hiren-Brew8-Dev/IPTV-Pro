@@ -63,10 +63,23 @@ struct PlayerView: View {
             }
 
             // Controls Overlay
-            NewPlayerControlsView(
+            PlayerControlsView(
                 viewModel: playerViewModel,
+                videoTitle: playerViewModel.videoTitle,
+                toggleControls: {
+                    withAnimation {
+                        playerViewModel.isControlsVisible.toggle()
+                    }
+                },
                 onBack: {
                     dismiss()
+                },
+                onSeek: { seconds in
+                    playerViewModel.seek(to: seconds)
+                },
+                onSmoothSeek: { seconds in
+                    // NewPlayerViewModel doesn't have smooth seek yet, use seek for now
+                    playerViewModel.seek(to: seconds)
                 }
             )
         }
