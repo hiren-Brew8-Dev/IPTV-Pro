@@ -31,6 +31,7 @@ struct PlayerBottomBar: View {
     
     // Formatting helper
     private func formatTime(_ seconds: Double) -> String {
+        guard seconds.isFinite else { return "LIVE" }
         let totalSeconds = Int(max(0, seconds))
         let hours = totalSeconds / 3600
         let minutes = (totalSeconds % 3600) / 60
@@ -225,6 +226,8 @@ struct PlayerBottomBar: View {
             }
         )
         .tint(.orange) 
+        .disabled(duration.isInfinite)
+        .opacity(duration.isInfinite ? 0.5 : 1.0)
         .onChange(of: dragValue) { oldVal, newVal in
             if isDragging {
                 onSmoothSeek(newVal)
