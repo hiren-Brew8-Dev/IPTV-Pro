@@ -58,9 +58,7 @@ struct FilteredChannelList: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 ForEach(channels) { channel in
-                    NavigationLink(
-                        destination: PlayerView(channel: channel, playlist: Array(channels))
-                    ) {
+                    VStack(alignment: .leading, spacing: 0) {
                         HStack {
                             // Logo
                             if let logoStr = channel.logoURL, let url = URL(string: logoStr) {
@@ -89,7 +87,7 @@ struct FilteredChannelList: View {
                         .padding(.vertical, 8)
                         .padding(.horizontal)
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .contentShape(Rectangle())
                     .contextMenu {
                         Button {
                             toggleFavorite(channel: channel)

@@ -15,14 +15,13 @@ struct FavoritesView: View {
                     .foregroundColor(.gray)
             } else {
                 ForEach(favorites) { channel in
-                    NavigationLink(destination: PlayerView(channel: channel)) {
-                        HStack {
-                            Image(systemName: "tv")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                            Text(channel.name ?? "Unknown")
-                        }
+                    HStack {
+                        Image(systemName: "tv")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                        Text(channel.name ?? "Unknown")
                     }
+                    .padding(.vertical, 4)
                 }
             }
         }

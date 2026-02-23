@@ -6,6 +6,11 @@
 //
 
 import Foundation
+import UIKit
+
+var isIpad: Bool {
+    UIDevice.current.userInterfaceIdiom == .pad
+}
 
 class Global {
     
